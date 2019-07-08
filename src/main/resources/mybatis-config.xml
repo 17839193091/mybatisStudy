@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--开启延时加载,默认是按层级加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--对任意延迟属性的调用会使带有延迟加载属性的对象完整加载,默认为true也是按层级加载-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.learn.chapter2.po.Role" alias="role"/>
+    </typeAliases>
+    <!--<typeHandlers>
+        &lt;!&ndash;<typeHandler handler="com.learn.chapter3.typeHandler.MyStringTypeHandler" javaType="String" jdbcType="VARCHAR"/>&ndash;&gt;
+        <package name="com.learn.chapter3.typeHandler"/>
+    </typeHandlers>
+    <objectFactory type="com.learn.chapter3.objectFactory.MyObjectFactory">
+        <property name="name" value="MyObjectFactory"/>
+    </objectFactory>-->
+    <!--定义数据库信息，默认使用development数据库构建环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--采用jdbc事物管理-->
+            <transactionManager type="jdbc">
+                <property name="autoCommit" value="false"/>
+            </transactionManager>
+            <!--配置数据库连接信息-->
+            <dataSource type="com.learn.chapter3.dataSourceFactory.DruidDataSourceFactory">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--定义映射器-->
+    <mappers>
+        <mapper resource="com/learn/chapter2/mapper/roleMapper.xml"/>
+        <mapper resource="com/learn/chapter3/mapper/roleMapper.xml"/>
+        <mapper resource="com/learn/chapter4/mapper/roleMapper.xml"/>
+
+        <mapper resource="com/learn/chapter4/mapper/studentMapper.xml"/>
+        <mapper resource="com/learn/chapter4/mapper/studentSelfcardMapper.xml"/>
+        <mapper resource="com/learn/chapter4/mapper/lectureMapper.xml"/>
+        <mapper resource="com/learn/chapter4/mapper/studentLectureMapper.xml"/>
+
+        <mapper resource="com/learn/chapter4/mapper/studentHealthMaleMapper.xml"/>
+        <mapper resource="com/learn/chapter4/mapper/studentHealthFemaleMapper.xml"/>
+    </mappers>
+</configuration>
